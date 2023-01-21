@@ -1,3 +1,4 @@
+
 //use moment to take the current date in the format "Day Name", "Day of Month" "Month"
 // and stores it in the variable now
 var now = moment().format("dddd, Do MMMM");
@@ -10,6 +11,7 @@ var hour = moment().format('H');
 
 //convers the hour to an int value
 hour = hour*1
+
 
 //below function changes the class of the <textareas> in the HTML
 //this is so the current, future and past times can have specific formatting as defined the thier class and css
