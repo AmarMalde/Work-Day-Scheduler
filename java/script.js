@@ -42,3 +42,49 @@ function setTense() {
 
     });
 }
+
+//calls the function so it runs when the webpage loads
+setTense();
+
+
+//below codeblock will save the text in each <textarea> to the local storage 
+//it will save the text to the parent elements id
+//e.g. the first textarea's parent has an id of 9
+
+//whenever an element with a class of saveBtn is clicked run the function
+//all the save buttons have a class of saveBtn
+
+$('.saveBtn').on('click', function() {
+
+    //save the text in the textarea as textArea
+    var textArea = $(this).parent().children().eq(1).val();
+
+    //and save the id of the parent of textarea
+    var textareaID = $(this).parent().attr('id');
+
+    //stores the textarea text as the id of parent element in the local storage
+    window.localStorage.setItem(textareaID, JSON.stringify(textArea));
+})
+
+//below function updates the textareas with data from local storage
+
+function updatedText() {
+
+    //for each element with the class of row - which is the parent element(s) of the text areas
+    $('.row').each(function(i, obj) {
+    
+        // get the id of the current ID of the object (which is the parent of a textarea)
+        var textareaID = $(obj).attr('id');
+
+        // use textareaID to get the textarea's text from the local storage
+        text = JSON.parse(window.localStorage.getItem(textareaID));
+
+        //update the textarea (child of obj) with text
+        $(obj).children().eq(1).val(text)
+
+    });
+
+}
+
+//run function so it runs when the page is loaded
+updatedText()
